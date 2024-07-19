@@ -17,10 +17,10 @@ jobs:
   bump-version:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: stellar/actions/rust-cache@main
     - run: rustup update
-    - uses: stellar/binaries@v21
+    - uses: stellar/binaries@v26
       with:
         name: cargo-edit
         version: 0.11.6
@@ -37,7 +37,7 @@ jobs:
         git commit -m 'Bump version to ${{ inputs.version }}'
         git push origin 'release/v${{ inputs.version }}'
     - name: Create Pull Request
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       id: create-pull-request
       with:
         script: |
@@ -52,7 +52,7 @@ jobs:
           return response.data.number;
     - name: Comment on the Pull Request about Failure
       if: steps.set-version.outcome == 'failure'
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7
       with:
         script: |
           github.rest.issues.createComment({
