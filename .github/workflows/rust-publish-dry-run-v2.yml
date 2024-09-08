@@ -60,12 +60,12 @@ jobs:
         brew update && brew install make
         echo "$(brew --prefix)/opt/make/libexec/gnubin/" >> $GITHUB_PATH
 
-    - uses: stellar/binaries@v21
+    - uses: stellar/binaries@v30
       with:
         name: cargo-hack
         version: 0.5.28
 
-    - uses: stellar/binaries@v26
+    - uses: stellar/binaries@v30
       with:
         name: cargo-workspaces
         version: 0.3.4
